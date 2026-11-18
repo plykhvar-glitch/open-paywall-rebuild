@@ -144,6 +144,16 @@ img,video{display:block}
 .band .nums{display:flex;gap:34px}
 .band .nums b{display:block;font-size:30px;font-weight:600;letter-spacing:-.035em;color:var(--accent-lift)}
 .band .nums span{display:block;font:500 10.5px/1.3 'DM Mono',monospace;color:var(--ink3);margin-top:4px;letter-spacing:.06em;text-transform:uppercase}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:36px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+@media(max-width:900px){.how{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.how{grid-template-columns:1fr}}
+.hw{padding:26px 22px 26px 0;border-right:1px solid var(--hair);margin-right:22px;display:flex;flex-direction:column}
+.hw:last-child{border-right:none;margin-right:0}
+@media(max-width:900px){.hw{border-right:none;margin-right:0;padding-right:10px;border-bottom:1px solid var(--hair)}}
+.hw .hn{font:500 12px/1 'DM Mono',monospace;color:var(--accent-lift);letter-spacing:.04em}
+.hw h4{font-size:16.5px;font-weight:500;letter-spacing:-.02em;line-height:1.3;margin:12px 0 8px}
+.hw p{font-size:13.5px;line-height:1.58;color:var(--ink2);flex:1}
+.hw code{display:block;margin-top:14px;font:400 10.5px/1.5 'DM Mono',monospace;color:var(--ink2);background:#111113;border:1px solid var(--hair);border-radius:10px;padding:9px 11px;word-break:break-word}
 .dos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
 @media(max-width:860px){.dos{grid-template-columns:1fr}}
 .cta-row{display:flex;justify-content:center;margin-top:52px;align-items:center;gap:14px;flex-wrap:wrap}
@@ -350,9 +360,9 @@ img,video{display:block}
         <div class="stat"><b>1</b><span>paywall headline<br>for all of them</span></div>
       </div>
       <div class="fb">
-        <div class="fb-k">Built in Adapty Flow Builder</div>
-        <div class="fb-i"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><p><b>Millions of dollars</b> in subscription revenue pass through Flow Builder every month.</p></div>
-        <div class="fb-i"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><p><b>One paywall per ad</b> is a targeting rule on the campaign name you already track, not a new release.</p></div>
+        <div class="fb-k">Targeting by ad, in Adapty</div>
+        <div class="fb-i"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><p><b>Your paywall stays yours.</b> Same native screen, same code; Adapty only tells it which ad the install came from.</p></div>
+        <div class="fb-i"><span class="tick"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><p><b>One paywall per ad</b> is an audience on the campaign you already track, set up in the dashboard, not a new release.</p></div>
       </div>
     </div>
   </header>
@@ -364,7 +374,7 @@ img,video{display:block}
     <p class="body">What follows is five ideas, not fifteen, all on that one screen. Each is a hypothesis you can A/B test, and each is built into three working phones, one per ad, so you can see it rather than imagine it.</p>
     <div class="notes">
       <div class="note"><h4>We did not redesign your paywall</h4><p>The black, the lime “$0 today, 14-day trial”, your tick list, the Annual card with “SAVE $90/YR”, Monthly, Restore Purchases, the press grid and “Start free trial →” all stay. Only what the screen says, and in what order, changes.</p></div>
-      <div class="note"><h4>The onboarding stays as it is</h4><p>This audit is the paywall only. Everything before it runs unchanged; the paywall reads the campaign the install came from and nothing else.</p></div>
+      <div class="note"><h4>Built by your team, targeted by Adapty</h4><p>You keep building your own onboarding and paywalls in-house. Adapty sits underneath: it knows which ad each install came from, picks the paywall version for it and measures the revenue.</p></div>
     </div>
   </div></section>
   <div class="wrap"><div class="rule"></div></div>
@@ -377,6 +387,24 @@ img,video{display:block}
   </div></section>
   <div class="wrap"><div class="rule"></div></div>
 
+  <section class="sec" id="how"><div class="wrap">
+    <div class="sec-k">How it works in Adapty</div>
+    <h2>Each ad gets its own paywall. Your team keeps building the paywall.</h2>
+    <p class="body">Nothing here needs a paywall builder. Your in-house paywall reads a few fields from Adapty, and Adapty decides what goes in them for each install, by the ad it came from.</p>
+    <div class="how">
+      <div class="hw"><span class="hn">01</span><h4>The ad comes in with the install</h4><p>Connect the attribution you already run (AppsFlyer, Adjust, Branch and others) or Apple Ads. Every install arrives in Adapty with its channel, campaign, ad set and creative.</p><code>channel: Meta · campaign: Heartbreak</code></div>
+      <div class="hw"><span class="hn">02</span><h4>A segment per ad group</h4><p>In the dashboard, one segment per promise: campaign contains “heartbreak”, “NSR James Blake”, or channel is AdMob. New ads join their segment by name, no release.</p><code>Segment · Heartbreak ads</code></div>
+      <div class="hw"><span class="hn">03</span><h4>Your paywall, its remote config</h4><p>Your native paywall stays in your code. It asks the placement for its paywall and reads the remote config: headline, program, image, timeline length. Adapty serves the version for that segment.</p><code>{ "headline": "Start your heartbreak program today", "program": "heartbreak", "days": 4 }</code></div>
+      <div class="hw"><span class="hn">04</span><h4>A/B test each against today</h4><p>Every segment runs its paywall against “Try Open for free” as control. Adapty reports trials, conversion to paid and revenue per ad group, so you know which promise pays.</p><code>Heartbreak · A/B · control vs. B</code></div>
+    </div>
+    <div class="dos">
+      <div class="note"><h4>A new ad gets its headline the same day</h4><p>The James Blake ads went live on November 14. In Adapty their paywall is a new remote-config value on a new segment, live the same day, no App Review and no new build.</p></div>
+      <div class="note"><h4>Meta and AdMob, apart</h4><p>The same Reset program sells differently in a feed and in a full-screen video. Split by channel and each keeps its own headline, proof and results.</p></div>
+      <div class="note"><h4>Revenue, not installs, per ad</h4><p>Adapty ties every trial and renewal back to the campaign it came from, so a creative is judged by what it earns after the paywall, not by its click-through.</p></div>
+    </div>
+  </div></section>
+  <div class="wrap"><div class="rule"></div></div>
+
   <section class="sec"><div class="wrap">
     <div class="sec-k">The five ideas</div>
     <h2>Ranked by what we would test first.</h2>
@@ -386,11 +414,6 @@ img,video{display:block}
     <div class="band">
       <div class="txt"><div class="lab">Potential outcome</div><p>Together these change two things about the one screen every paid install sees: whether it continues the ad they tapped, and whether “free” means what the ad said it means.</p></div>
       <div class="nums"><div><b>+25%</b><span>CR to trial</span></div><div><b>+10%</b><span>trial to paid</span></div></div>
-    </div>
-    <div class="dos">
-      <div class="note"><h4>Pass the campaign to Adapty</h4><p>The campaign name your attribution already reports becomes the audience that picks the paywall. Meta and AdMob installs each get theirs, and no ad needs a new link.</p></div>
-      <div class="note"><h4>A new promise gets its headline the day it ships</h4><p>The James Blake ads went live on November 14. In Flow Builder their paywall is a copy with one line and one image changed, live the same day, no App Review.</p></div>
-      <div class="note"><h4>Keep today’s paywall as control</h4><p>Run each ad’s paywall against “Try Open for free” on the same audience, so every lift is measured on Open’s own traffic.</p></div>
     </div>
     <div class="cta-row">
       <button class="bigbtn" data-open="pw">Open the three paywalls →</button>
@@ -406,7 +429,7 @@ img,video{display:block}
   <div class="wrap pwv">
     <div class="sec-k">Paywall · one per ad</div>
     <h1>Three ads. <b>Three paywalls that finish their sentence.</b></h1>
-    <p class="sub">An install from your heartbreak ads, one from the James Blake reset and one from the “that was church” video on AdMob. Same prices, same design. Tap the steps, or tap inside any phone: scroll, pick a plan, tap “Later”.</p>
+    <p class="sub">An install from your heartbreak ads, one from the James Blake reset and one from the “that was church” video on AdMob. Same native paywall, same prices; Adapty only swaps what it says, by ad. Tap the steps, or tap inside any phone: scroll, pick a plan, tap “Later”.</p>
     <div class="tools"><button class="wt" id="wt" data-walk>▶ 30-second walkthrough</button></div>
     <div class="steps" id="steps"><button data-st="arrive">1 · The ad</button><button data-st="today" class="td">2 · Today</button><button data-st="pw" class="on">3 · Paywall</button></div>
     <p class="stcap" id="stcap"></p>
@@ -415,7 +438,7 @@ img,video{display:block}
     <div class="ideas" id="ideas"></div>
     <div class="qr">
       <img class="code" src="img/qr.svg" alt="QR code to this prototype">
-      <div><h3>Try it on your phone</h3><p>Scan to open the three paywalls in your hand. Every screen is buildable in Adapty Flow Builder and testable against today’s.</p></div>
+      <div><h3>Try it on your phone</h3><p>Scan to open the three paywalls in your hand. Each stays your own native paywall; Adapty picks which version an install sees, by the ad it came from, and tests it against today’s.</p></div>
       <a class="bigbtn" href="https://calendly.com/d/cty4-37z-zqj" target="_blank" rel="noopener">Book a demo</a>
     </div>
   </div>
@@ -437,7 +460,7 @@ var ADS=[
  { k:'Heartbreak · Meta · since Aug 20', h:'“Learn the science behind love and loss. A new meditation and breathwork series navigating all matters of the heart.”', p:'Your longest-running Meta ads: “Meditations for heartbreak”, “4-day program for heartbreak”, “7 Days Free”. They sell one program by name. The paywall after them never mentions it.', n:'3', u:'Meta ads, the top three by reach', th:['ad-heart-1','ad-heart-2'], ring:'#0866FF', ph:0 },
  { k:'Nervous System Reset · Meta · since Nov 14', h:'“Retrain your nervous system ft. James Blake.” Headline: “(Free) Nervous System Reset.”', p:'Five new creatives in one week: “5 minutes a day to shift your entire mood”, “A daily ritual for more focus”, “I used to use an app for my breathwork, another for meditation…”. The ad says free and names James Blake; the paywall says neither.', n:'5', u:'new Meta ads, all dated Nov 14', th:['ad-nsr-1','ad-nsr-2'], ring:'#BFD64A', ph:1 },
  { k:'Testimonial video · AdMob · since Aug 22', h:'“I’m not religious, but that was church.” “Life-changing.” “A true sense of community.” Then: Nervous System Reset, join for free.', p:'Your single biggest creative, by far: 49% of what AppMagic sees of Open runs on AdMob, and this video leads it. It sells a feeling, in members’ own words. The paywall it lands on has no member’s words on it.', n:'49%', u:'of tracked impressions, on AdMob', th:['ad-church-1'], wide:true, ring:'#D6702C', ph:2 },
- { k:'Grief & connection · Meta · since Oct 9', h:'“Free 7-Day Grief Program. 7 days, 10 minutes each.” “Connection is a skill, not a given. 10 days, 10 minutes each.”', p:'Two smaller programs, each with its own length in the ad. Too few ads for their own phone yet; in Flow Builder each gets a headline and a program card the day it scales.', n:'2', u:'Meta ads, still testing', th:['ad-grief','ad-conn'], ring:'#BE343C', ph:-1 }
+ { k:'Grief & connection · Meta · since Oct 9', h:'“Free 7-Day Grief Program. 7 days, 10 minutes each.” “Connection is a skill, not a given. 10 days, 10 minutes each.”', p:'Two smaller programs, each with its own length in the ad. Too few ads for their own phone yet; in Adapty each becomes its own segment, with its own headline and program card, the day it scales.', n:'2', u:'Meta ads, still testing', th:['ad-grief','ad-conn'], ring:'#BE343C', ph:-1 }
 ];
 
 /* the three phones */
@@ -641,7 +664,7 @@ renderTrio(); fit(); paintSteps(); addEventListener('resize',fit); addEventListe
 (function(){ var q=new URLSearchParams(location.search); if(q.get('view')==='proto'||q.get('open')==='proto') showView('pw'); if(q.get('step')) setStep(q.get('step')); })();
 </script>
 <script>
-var BUILD='p1';
+var BUILD='p2';
 fetch(location.pathname+'?cb='+Date.now(),{cache:'no-store'}).then(function(r){ return r.text(); }).then(function(h){
   var m=h.match(/var BUILD='([^']+)'/); if(m && m[1]!==BUILD){ var q=new URLSearchParams(location.search); q.set('v',m[1]); location.replace(location.pathname+'?'+q.toString()); }
 }).catch(function(){});
